@@ -1,0 +1,56 @@
+---
+title: "REGX"
+author: "Youngwho Park"
+date: "2023-03-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(stringr)
+library(dplyr)
+```
+
+
+## R Markdown
+
+```{r cars}
+wilford <- rio::import("journals.csv")
+```
+
+
+```{r}
+df <- wilford %>% mutate(extract = str_extract_all(text_only_transcript, '\\w+ \\d{1,2}, \\d{4}'))
+#df2 <- df %>% mutate(date = str_extract_all(extract ,'\\w+ \\d{1,2}, \\d{4}'))
+```
+
+```{r}
+
+# Extract month, day, and year using regular expressions
+df$month <- str_extract_all(df$extract, "\\w+")
+df$day <- str_extract_all(df$extract, "\\d+")
+df$year <- str_extract_all(df$extract, "\\d{4}")
+
+# Combine month, day, and year into a single string
+df$date_new <- paste(df$month, df$day, df$year, sep = "-")
+
+# Separate into rows using strsplit
+dates_new <- data.frame(date = unlist(strsplit(df$date_new, "-")))
+
+# Rename column
+names(dates_new) <- "date"
+```
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
