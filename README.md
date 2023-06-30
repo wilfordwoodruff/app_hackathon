@@ -1,3 +1,6 @@
+
+# Explore the online App [HERE](https://woodruffquery.streamlit.app/)!
+
 # Repository for the Wilford Woodruff Journals Hackathon
 
 We obtained the text for the scripture cannon of The Church of Jesus Christ of Latter-day Saints from [scriptures.nephi.org](https://github.com/BYUIDSS/lds-scriptures) and the Wilford Woodruff Journal text from the respective [papers projects](https://wilfordwoodruffpapers.org/). We have included the `.txt` file for both in this repository.
